@@ -70,7 +70,8 @@ if uploaded_file is not None:
         api_key=API_KEY,
         base_url="https://openrouter.ai/api/v1",
         model=model_choice, 
-        temperature=0
+        temperature=0,
+        max_retries=3,
     )
 
     # Display Chat History
