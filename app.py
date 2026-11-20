@@ -36,9 +36,7 @@ with st.sidebar:
     
     st.divider()
     
-    model_choice = st.selectbox(
-        "2. Choose AI Model",
-        ["liquid/lfm-2.5-2.6b:free", "google/gemini-2.0-flash-exp:free"]
+   model_choice = st.selectbox("2. Choose AI Model", ["google/gemma-4-26b-a4b-it:free", "nvidia/nemotron-3.5-lightning:free", "openrouter/free"]
     )
     
     if st.button("Clear Chat History", use_container_width=True):
