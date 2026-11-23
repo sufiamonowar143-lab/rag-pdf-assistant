@@ -103,7 +103,14 @@ CONTEXT:
 
 QUESTION: {question}
 """
-                response = st.session_state.llm.invoke(prompt)
+try:
+    response = st.session_state.llm.invoke(prompt)
+except Exception as e:
+    if "RateLimitError" in str(type(e).__name__) or "429" in str(e):
+        st.warning("⚠️ The AI is currently receiving too many requests. Please wait 60 seconds and try again. (This is a limitation of the free OpenRouter tier).")
+    else:
+        st.error(f"An unexpected error occurred: {e}")
+    st.stop() # Stops the app from showing the ugly red crash screen
                 
                 # Fallback check: if the AI couldn't find the answer
                 if "couldn't find that information" in response.content.lower() or len(response.content) < 10:
