@@ -106,7 +106,7 @@ QUESTION: {question}
 try:
     response = st.session_state.llm.invoke(prompt)
 except Exception as e:
-    if "RateLimitError" in str(type(e).__name__) or "429" in str(e):
+if "RateLimitError" in str(type(e).__name__) or "429" in str(e):
         st.warning("⚠️ The AI is currently receiving too many requests. Please wait 60 seconds and try again. (This is a limitation of the free OpenRouter tier).")
     else:
         st.error(f"An unexpected error occurred: {e}")
